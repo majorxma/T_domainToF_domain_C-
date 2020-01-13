@@ -1,0 +1,11 @@
+C:\Users\MKXDCCDB\Desktop\T_domainToF_domain\T_domain2F_domain\T_domain2F_domain\bin\Debug\netcoreapp3.1\T_domain2F_domain.exe
+C:\Users\MKXDCCDB\Desktop\T_domainToF_domain\T_domain2F_domain\T_domain2F_domain\bin\Debug\netcoreapp3.1\T_domain2F_domain.deps.json
+C:\Users\MKXDCCDB\Desktop\T_domainToF_domain\T_domain2F_domain\T_domain2F_domain\bin\Debug\netcoreapp3.1\T_domain2F_domain.runtimeconfig.json
+C:\Users\MKXDCCDB\Desktop\T_domainToF_domain\T_domain2F_domain\T_domain2F_domain\bin\Debug\netcoreapp3.1\T_domain2F_domain.runtimeconfig.dev.json
+C:\Users\MKXDCCDB\Desktop\T_domainToF_domain\T_domain2F_domain\T_domain2F_domain\bin\Debug\netcoreapp3.1\T_domain2F_domain.dll
+C:\Users\MKXDCCDB\Desktop\T_domainToF_domain\T_domain2F_domain\T_domain2F_domain\bin\Debug\netcoreapp3.1\T_domain2F_domain.pdb
+C:\Users\MKXDCCDB\Desktop\T_domainToF_domain\T_domain2F_domain\T_domain2F_domain\obj\Debug\netcoreapp3.1\T_domain2F_domain.csprojAssemblyReference.cache
+C:\Users\MKXDCCDB\Desktop\T_domainToF_domain\T_domain2F_domain\T_domain2F_domain\obj\Debug\netcoreapp3.1\T_domain2F_domain.AssemblyInfoInputs.cache
+C:\Users\MKXDCCDB\Desktop\T_domainToF_domain\T_domain2F_domain\T_domain2F_domain\obj\Debug\netcoreapp3.1\T_domain2F_domain.AssemblyInfo.cs
+C:\Users\MKXDCCDB\Desktop\T_domainToF_domain\T_domain2F_domain\T_domain2F_domain\obj\Debug\netcoreapp3.1\T_domain2F_domain.dll
+C:\Users\MKXDCCDB\Desktop\T_domainToF_domain\T_domain2F_domain\T_domain2F_domain\obj\Debug\netcoreapp3.1\T_domain2F_domain.pdb

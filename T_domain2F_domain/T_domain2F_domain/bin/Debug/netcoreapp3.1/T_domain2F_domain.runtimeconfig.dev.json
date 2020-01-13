@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\MKXDCCDB\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\MKXDCCDB\\.nuget\\packages"
+    ]
+  }
+}
