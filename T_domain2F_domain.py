@@ -37,7 +37,7 @@ half_x = x[range(int(N/2))]  #取一半区间
  
 abs_y=np.abs(fft_y)                # 取复数的绝对值，即复数的模(双边频谱)
 angle_y=np.angle(fft_y)            #取复数的角度
-normalization_y=abs_y/N            #归一化处理（双边频谱）                              
+normalization_y=abs_y/(N / 2)            #归一化处理（双边频谱）
 normalization_half_y = normalization_y[range(int(N/2))]      #由于对称性，只取一半区间（单边频谱）
  
 plt.subplot(231)

@@ -29,7 +29,8 @@ namespace T_domain2F_domain
                                             650, 656, 659, 659, 655, 649, 640, 632, 626, 621, 614, 603, 590, 575, 564, 550, 530, 519, 507, 495, 484,
                                             472, 462, 452, 445, 437, 430, 423, 417, 423, 442, 445, 435, 423, 422, 431, 436, 428, 413, 401, 390, 381,
                                             373, 367, 363, 364, 365, 367, 371, 378, 396, 411, 428};
-            prr = DFT.Dft(input);//prr为离散傅里叶变换得到的结果
+            prr = DFT.Dft(input);
+            //prr = DFT.Dft(input);//prr为离散傅里叶变换得到的结果
             Len = prr.Length;
             //由于傅里叶变换得到的结果本应该有对称性，但第一个值一般有较大误差，所以取结果时请直接舍弃第一个值。
             double[] normalization_y;
@@ -42,11 +43,12 @@ namespace T_domain2F_domain
             {
                 Console.WriteLine(normalization_y[i]);
             }
+            Console.WriteLine(Len);
             //输出归一化的双边振幅。
-            string result1 = @"D:\result1.txt";
+            string result1 = @"F:\result1.txt";
             FileStream fs = new FileStream(result1, FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
-            for (int i = 1; i < Len / 2; i++)
+            for (int i = 0; i < Len; i++)
             {
                 sw.Write(normalization_y[i]);
                 sw.Flush();
@@ -192,11 +194,114 @@ namespace T_domain2F_domain
             double[] normalization_y = new double[array.Length - 1];
             for (int i = 1; i < array.Length; i++)
             {
-                normalization_y[i - 1] = array[i] / array.Length;
+                normalization_y[i - 1] = array[i] / array.Length * 2;
             }
             return normalization_y;
         }
     }
 
+    //fft算法
+    public class FFT
+    {
+        public static double[] Fft(double[] In)
+        {
+            int stageNum = GetMin2n(In.Length);
+            In = Get2nIn(In);
+            int N = In.Length;
+            Complex[] WN = new Complex[N];
+            double[] result = new double[N];
+            for (int i = 0; i < N / 2; i++)
+            {
+                WN[i] = new Complex(Math.Cos(2 * Math.PI / N * i), -1 * Math.Sin(2 * Math.PI / N * i));
+            }
+            int[] stage = new int[stageNum];
+            stage[0] = 0;
+            for (int i = 0; i <stageNum; i++)
+            {
+                stage[i] = Convert.ToInt32(Math.Round(Math.Pow(2, stageNum - 1 - i)));
+            }
 
+            //重排数据
+            Complex[] Register = new Complex[N];
+            for (int i = 0; i < N; i++)
+            {
+                int index = GetIndex(i, stageNum);
+                Register[i] = new Complex(In[index], 0);
+            }
+            Complex[] p = new Complex[N];
+            Complex[] q = new Complex[N];
+            Complex[] w = new Complex[N];
+            int group = N;
+            for (int i = 0; i < stageNum; i++)
+            {
+                group = group >> 1;
+                int subnum = N / group;
+                
+                for (int j = 0; j < group; j++)
+                {
+                    for (int k = 0; k < subnum / 2; k++)
+                    {
+                        p[j * subnum + k] = p[j * subnum + k + subnum / 2] = Register[j * subnum + k];
+                        w[j * subnum + k] = WN[stage[i] * k];
+                    }
+                    for (int k = subnum / 2; k < subnum; k++)
+                    {
+                        q[j * subnum + k] = q[j * subnum + k - subnum / 2] = Register[j * subnum + k];
+                        w[j * subnum + k] = -1 * w[k - subnum / 2];
+                    }
+                }
+
+                for (int j = 0; j < N; j++)
+                {
+                    Register[j] = p[j] + w[j] * q[j]; 
+                }
+            }
+            for (int i = 0; i < N; i++)
+            {
+                result[i] = Register[i].getModulus();
+            }
+
+            return result;
+        }
+
+        private static int GetIndex(int dat, int stageNum)
+        {
+            int result = 0;
+            for (int i = 0; i < stageNum; i++)
+            {
+                if (0 != (dat & (0x01 << i))) result |= ((0x01 << (stageNum - 1)) >> i);
+            }
+            return result;
+        }
+
+        //因为fft需要保证数组长度为2的n次幂，因此要在结尾补0.
+        public static double[] Get2nIn(double[] In)
+        {
+            int n = GetMin2n(In.Length);
+            int N = 0x01 << n;
+            double[] result = new double[N];
+            int i = 0;
+            for (i = 0; i < In.Length; i++)
+            {
+                result[i] = In[i];
+            }
+            for (; i < N; i++)
+            {
+                result[i] = 0;
+            }
+            return result;
+        }
+        //得到最小的2的n次幂的n值。
+        public static int GetMin2n(int len)
+        {
+            int num = 1;
+            int i = 0;
+            while (num < len)
+            {
+                num *= 2;
+                i++;
+            }
+            return i;
+        }
+    }
 }
