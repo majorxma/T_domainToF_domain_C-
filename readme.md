@@ -10,7 +10,7 @@ https://blog.csdn.net/weixin_37585701/article/details/79136179.
 
 Result like that
 
-![](C:\Users\MKXDCCDB\Desktop\T_domainToF_domain\result.png)
+![](result.png)
 
 
 
